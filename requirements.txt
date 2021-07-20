@@ -1,0 +1,9 @@
+build==0.3.0
+jupyter==1.0.0
+jupyterlab==3.0.4
+matplotlib==3.3.3
+pandas==1.2.0
+pytest==6.2.2
+scipy==1.6.0
+twine==3.3.0
+workalendar==15.0.1
