@@ -25,7 +25,7 @@ This formula describes the concepts we talk above
 - **EUEcoTrendComponents**: give a monthly changed factor based on EU industry product public data
 - **HolidayTrendComponents**: simulate the holiday sale peak. It adapts the holiday days - differently in different country
 - **BlackFridaySaleComponents**: simulate the BlackFriday sale event
-- **WeekendTrendComponents**: more sales in the weekend then weekend
+- **WeekendTrendComponents**: more sales at weekends than on weekdays
 - **FeatureRandFactorComponents**: set up different sale amount for different stores and different product
 - **ProductSeasonTrendComponents**: simulate season-sensitive product sales. In this example code, we have 3 different types of product:
     - winter jacket: inverse-proportional to the temperature, more sales in winter
