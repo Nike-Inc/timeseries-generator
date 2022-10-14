@@ -39,8 +39,8 @@ class LinearTrend(BaseFactor):
         ... })
         """
         if not (
-            (coef and offset and not feature and not feature_values)
-            or (not coef and not offset and feature and feature_values)
+            (coef is not None and offset is not None and feature is None and feature_values is None)
+            or (coef is None and offset is None and feature is not None and feature_values is not None)
         ):
             raise AttributeError(
                 "Either set `coef` and `offset` or `features` and `feature_values`"
