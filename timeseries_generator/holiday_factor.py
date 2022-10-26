@@ -174,7 +174,8 @@ class HolidayFactor(BaseFactor):
                     "holiday"
                 ].apply(get_holiday_factor)
 
-                df = df.append(country_holiday_df)
+                df = concat([df, country_holiday_df], ignore_index=True)
+
 
             # Apply smoothing to the curve using a gaussian moving window
             df[self._col_name] = (
