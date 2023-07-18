@@ -110,7 +110,7 @@ class WhiteNoise(BaseFactor):
 
                 factor_df[self._col_name] = factor_df.apply(
                     get_factor_col, axis=1
-                ).drop(columns=["noise_1"])
+                ).drop(columns=["noise1"])
             else:
                 factor_df[self._col_name] = (
                     self._stdev_factor * randn(len(factor_df)) + 1
