@@ -102,7 +102,7 @@ class WhiteNoise(BaseFactor):
                 feature: str = iter(
                     self._feature_values
                 ).__next__()  # len(self._features is always 1)
-                factor_df["noise_1"] = randn(len(factor_df))
+                factor_df["noise1"] = randn(len(factor_df))
 
                 def get_factor_col(row):
                     stdev_factor: float = self._feature_values[feature][row[feature]]
@@ -110,7 +110,7 @@ class WhiteNoise(BaseFactor):
 
                 factor_df[self._col_name] = factor_df.apply(
                     get_factor_col, axis=1
-                ).drop("noise1", axis=1)
+                ).drop(columns=["noise1"])
             else:
                 factor_df[self._col_name] = (
                     self._stdev_factor * randn(len(factor_df)) + 1
