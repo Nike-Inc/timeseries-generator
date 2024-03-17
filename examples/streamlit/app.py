@@ -7,7 +7,6 @@ import pandas as pd
 import datetime
 
 import streamlit as st
-from streamlit.report_thread import REPORT_CONTEXT_ATTR_NAME
 from threading import current_thread
 import altair as alt
 import functools
@@ -35,41 +34,6 @@ st.set_page_config(
 )
 
 
-@contextmanager
-def st_redirect(src, dst):
-    placeholder = st.empty()
-    output_func = getattr(placeholder, dst)
-
-    with StringIO() as buffer:
-        old_write = src.write
-
-        def new_write(b):
-            if getattr(current_thread(), REPORT_CONTEXT_ATTR_NAME, None):
-                buffer.write(b)
-                output_func(buffer.getvalue())
-            else:
-                old_write(b)
-
-        try:
-            src.write = new_write
-            yield
-        finally:
-            src.write = old_write
-
-
-@contextmanager
-def st_stdout(dst):
-    with st_redirect(sys.stdout, dst):
-        yield
-
-
-@contextmanager
-def st_stderr(dst):
-    with st_redirect(sys.stderr, dst):
-        yield
-
-
-# -----------------------------------
 # Streamlit APP start from here
 
 st.title("Awesome Time Series Syntheic Data Generator")
@@ -219,7 +183,7 @@ if is_noise:
 # select time period
 
 st.subheader("Input start date and end date")
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 with col1:
     start_date = st.date_input(
         "Start data", datetime.date(2019, 1, 1), min_value=datetime.date(2012, 1, 1)
@@ -316,7 +280,7 @@ st.markdown(get_table_download_link(df_vis), unsafe_allow_html=True)
 # -------------
 # show dataframe
 
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 with col1:
     show_base_df = st.checkbox("Show dataframe")
 with col2:
